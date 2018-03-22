@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xieyupeng.springboot.mapper.UserBaseMapper" >
+  <resultMap id="BaseResultMap" type="com.xieyupeng.springboot.model.UserBase" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="BBSId" property="bbsid" jdbcType="INTEGER" />
+    <result column="PUId" property="puid" jdbcType="INTEGER" />
+    <result column="RelevanceName" property="relevancename" jdbcType="SMALLINT" />
+    <result column="UserName" property="username" jdbcType="VARCHAR" />
+    <result column="Password" property="password" jdbcType="VARCHAR" />
+    <result column="EMail" property="email" jdbcType="VARCHAR" />
+    <result column="RegisterType" property="registertype" jdbcType="TINYINT" />
+    <result column="PhoneNo" property="phoneno" jdbcType="VARCHAR" />
+    <result column="WeiBoNo" property="weibono" jdbcType="VARCHAR" />
+    <result column="BaiDuNo" property="baiduno" jdbcType="VARCHAR" />
+    <result column="QQNo" property="qqno" jdbcType="VARCHAR" />
+    <result column="WeiXinNo" property="weixinno" jdbcType="VARCHAR" />
+    <result column="MeiZuNo" property="meizuno" jdbcType="VARCHAR" />
+    <result column="XiaoMiNo" property="xiaomino" jdbcType="VARCHAR" />
+    <result column="DeviceToken" property="devicetoken" jdbcType="VARCHAR" />
+    <result column="OpenAppId" property="openappid" jdbcType="TINYINT" />
+    <result column="Type" property="type" jdbcType="TINYINT" />
+    <result column="Status" property="status" jdbcType="TINYINT" />
+    <result column="CreateTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="UpdateTime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, BBSId, PUId, RelevanceName, UserName, Password, EMail, RegisterType, PhoneNo, 
+    WeiBoNo, BaiDuNo, QQNo, WeiXinNo, MeiZuNo, XiaoMiNo, DeviceToken, OpenAppId, Type, 
+    Status, CreateTime, UpdateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from users
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xieyupeng.springboot.model.UserBase" >
+    insert into users (Id, BBSId, PUId, 
+      RelevanceName, UserName, Password, 
+      EMail, RegisterType, PhoneNo, 
+      WeiBoNo, BaiDuNo, QQNo, 
+      WeiXinNo, MeiZuNo, XiaoMiNo, 
+      DeviceToken, OpenAppId, Type, 
+      Status, CreateTime, UpdateTime
+      )
+    values (#{id,jdbcType=INTEGER}, #{bbsid,jdbcType=INTEGER}, #{puid,jdbcType=INTEGER}, 
+      #{relevancename,jdbcType=SMALLINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{registertype,jdbcType=TINYINT}, #{phoneno,jdbcType=VARCHAR}, 
+      #{weibono,jdbcType=VARCHAR}, #{baiduno,jdbcType=VARCHAR}, #{qqno,jdbcType=VARCHAR}, 
+      #{weixinno,jdbcType=VARCHAR}, #{meizuno,jdbcType=VARCHAR}, #{xiaomino,jdbcType=VARCHAR}, 
+      #{devicetoken,jdbcType=VARCHAR}, #{openappid,jdbcType=TINYINT}, #{type,jdbcType=TINYINT}, 
+      #{status,jdbcType=TINYINT}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xieyupeng.springboot.model.UserBase" >
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="bbsid != null" >
+        BBSId,
+      </if>
+      <if test="puid != null" >
+        PUId,
+      </if>
+      <if test="relevancename != null" >
+        RelevanceName,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="password != null" >
+        Password,
+      </if>
+      <if test="email != null" >
+        EMail,
+      </if>
+      <if test="registertype != null" >
+        RegisterType,
+      </if>
+      <if test="phoneno != null" >
+        PhoneNo,
+      </if>
+      <if test="weibono != null" >
+        WeiBoNo,
+      </if>
+      <if test="baiduno != null" >
+        BaiDuNo,
+      </if>
+      <if test="qqno != null" >
+        QQNo,
+      </if>
+      <if test="weixinno != null" >
+        WeiXinNo,
+      </if>
+      <if test="meizuno != null" >
+        MeiZuNo,
+      </if>
+      <if test="xiaomino != null" >
+        XiaoMiNo,
+      </if>
+      <if test="devicetoken != null" >
+        DeviceToken,
+      </if>
+      <if test="openappid != null" >
+        OpenAppId,
+      </if>
+      <if test="type != null" >
+        Type,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bbsid != null" >
+        #{bbsid,jdbcType=INTEGER},
+      </if>
+      <if test="puid != null" >
+        #{puid,jdbcType=INTEGER},
+      </if>
+      <if test="relevancename != null" >
+        #{relevancename,jdbcType=SMALLINT},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="registertype != null" >
+        #{registertype,jdbcType=TINYINT},
+      </if>
+      <if test="phoneno != null" >
+        #{phoneno,jdbcType=VARCHAR},
+      </if>
+      <if test="weibono != null" >
+        #{weibono,jdbcType=VARCHAR},
+      </if>
+      <if test="baiduno != null" >
+        #{baiduno,jdbcType=VARCHAR},
+      </if>
+      <if test="qqno != null" >
+        #{qqno,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinno != null" >
+        #{weixinno,jdbcType=VARCHAR},
+      </if>
+      <if test="meizuno != null" >
+        #{meizuno,jdbcType=VARCHAR},
+      </if>
+      <if test="xiaomino != null" >
+        #{xiaomino,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetoken != null" >
+        #{devicetoken,jdbcType=VARCHAR},
+      </if>
+      <if test="openappid != null" >
+        #{openappid,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xieyupeng.springboot.model.UserBase" >
+    update users
+    <set >
+      <if test="bbsid != null" >
+        BBSId = #{bbsid,jdbcType=INTEGER},
+      </if>
+      <if test="puid != null" >
+        PUId = #{puid,jdbcType=INTEGER},
+      </if>
+      <if test="relevancename != null" >
+        RelevanceName = #{relevancename,jdbcType=SMALLINT},
+      </if>
+      <if test="username != null" >
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        Password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMail = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="registertype != null" >
+        RegisterType = #{registertype,jdbcType=TINYINT},
+      </if>
+      <if test="phoneno != null" >
+        PhoneNo = #{phoneno,jdbcType=VARCHAR},
+      </if>
+      <if test="weibono != null" >
+        WeiBoNo = #{weibono,jdbcType=VARCHAR},
+      </if>
+      <if test="baiduno != null" >
+        BaiDuNo = #{baiduno,jdbcType=VARCHAR},
+      </if>
+      <if test="qqno != null" >
+        QQNo = #{qqno,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinno != null" >
+        WeiXinNo = #{weixinno,jdbcType=VARCHAR},
+      </if>
+      <if test="meizuno != null" >
+        MeiZuNo = #{meizuno,jdbcType=VARCHAR},
+      </if>
+      <if test="xiaomino != null" >
+        XiaoMiNo = #{xiaomino,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetoken != null" >
+        DeviceToken = #{devicetoken,jdbcType=VARCHAR},
+      </if>
+      <if test="openappid != null" >
+        OpenAppId = #{openappid,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        Type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        Status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null" >
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xieyupeng.springboot.model.UserBase" >
+    update users
+    set BBSId = #{bbsid,jdbcType=INTEGER},
+      PUId = #{puid,jdbcType=INTEGER},
+      RelevanceName = #{relevancename,jdbcType=SMALLINT},
+      UserName = #{username,jdbcType=VARCHAR},
+      Password = #{password,jdbcType=VARCHAR},
+      EMail = #{email,jdbcType=VARCHAR},
+      RegisterType = #{registertype,jdbcType=TINYINT},
+      PhoneNo = #{phoneno,jdbcType=VARCHAR},
+      WeiBoNo = #{weibono,jdbcType=VARCHAR},
+      BaiDuNo = #{baiduno,jdbcType=VARCHAR},
+      QQNo = #{qqno,jdbcType=VARCHAR},
+      WeiXinNo = #{weixinno,jdbcType=VARCHAR},
+      MeiZuNo = #{meizuno,jdbcType=VARCHAR},
+      XiaoMiNo = #{xiaomino,jdbcType=VARCHAR},
+      DeviceToken = #{devicetoken,jdbcType=VARCHAR},
+      OpenAppId = #{openappid,jdbcType=TINYINT},
+      Type = #{type,jdbcType=TINYINT},
+      Status = #{status,jdbcType=TINYINT},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

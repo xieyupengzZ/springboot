@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--本地需要有这个包-->
+    <classPathEntry location="E:\mysql-connector-java-5.1.26-bin.jar"/>
+ 
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+ 
+        <commentGenerator>
+        	<property name="suppressDate" value="false" />
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+ 
+        <!-- 在xml中 &符号，要转换成 &amp;  -->    
+       <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://118.190.105.190:3306/dbyunmaiuser?useUnicode=true&amp;characterEncoding=UTF-8"
+                        userId="root" password="7afbafb54d">
+        </jdbcConnection>
+       <!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://115.28.0.250:3306/dbyunmaipt?useUnicode=true&amp;characterEncoding=UTF-8"
+                        userId="root" password="7afbafb54d">
+        </jdbcConnection> -->
+        <!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://yunmaidb13f.mysql.rds.aliyuncs.com:3306/dbyunmai?useUnicode=true&amp;characterEncoding=UTF-8"
+                        userId="yunmai_job" password="job_2015_yunma">
+        </jdbcConnection> -->
+ 		<!--  <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://47.52.3.145:3306/dbyunmai_us_test?useUnicode=true&amp;characterEncoding=UTF-8"
+                        userId="root" password="dq4q&amp;eYjPNRT">
+        </jdbcConnection>   -->
+ 		
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+ 
+        <javaModelGenerator targetPackage="main.java.com.xieyupeng.springboot.model" targetProject="src">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="main.resources.mapping" targetProject="src">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+ 
+        <javaClientGenerator type="XMLMAPPER" targetPackage="main.java.com.xieyupeng.springboot.mapper" targetProject="src">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table tableName="userstoken" domainObjectName="UsersToken" enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"/>
+			
+    </context></generatorConfiguration>

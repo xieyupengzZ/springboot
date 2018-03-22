@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xieyupeng.springboot.mapper.UsersTokenMapper">
+  <resultMap id="BaseResultMap" type="com.xieyupeng.springboot.model.UsersToken">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="AccessToken" jdbcType="VARCHAR" property="accesstoken" />
+    <result column="OpenId" jdbcType="VARCHAR" property="openid" />
+    <result column="UserId" jdbcType="INTEGER" property="userid" />
+    <result column="Type" jdbcType="SMALLINT" property="type" />
+    <result column="IsSyncData" jdbcType="TINYINT" property="issyncdata" />
+    <result column="IsCallBind" jdbcType="TINYINT" property="iscallbind" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, AccessToken, OpenId, UserId, Type, IsSyncData, IsCallBind, CreateTime, UpdateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userstoken
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from userstoken
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xieyupeng.springboot.model.UsersToken" useGeneratedKeys="true" keyProperty="id">
+    insert into userstoken (Id, AccessToken, OpenId, 
+      UserId, Type, IsSyncData, 
+      IsCallBind, CreateTime, UpdateTime
+      )
+    values (#{id,jdbcType=INTEGER}, #{accesstoken,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=INTEGER}, #{type,jdbcType=SMALLINT}, #{issyncdata,jdbcType=TINYINT}, 
+      #{iscallbind,jdbcType=TINYINT}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xieyupeng.springboot.model.UsersToken">
+    insert into userstoken
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="accesstoken != null">
+        AccessToken,
+      </if>
+      <if test="openid != null">
+        OpenId,
+      </if>
+      <if test="userid != null">
+        UserId,
+      </if>
+      <if test="type != null">
+        Type,
+      </if>
+      <if test="issyncdata != null">
+        IsSyncData,
+      </if>
+      <if test="iscallbind != null">
+        IsCallBind,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="updatetime != null">
+        UpdateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="accesstoken != null">
+        #{accesstoken,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="issyncdata != null">
+        #{issyncdata,jdbcType=TINYINT},
+      </if>
+      <if test="iscallbind != null">
+        #{iscallbind,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xieyupeng.springboot.model.UsersToken">
+    update userstoken
+    <set>
+      <if test="accesstoken != null">
+        AccessToken = #{accesstoken,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        OpenId = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        UserId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        Type = #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="issyncdata != null">
+        IsSyncData = #{issyncdata,jdbcType=TINYINT},
+      </if>
+      <if test="iscallbind != null">
+        IsCallBind = #{iscallbind,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null">
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xieyupeng.springboot.model.UsersToken">
+    update userstoken
+    set AccessToken = #{accesstoken,jdbcType=VARCHAR},
+      OpenId = #{openid,jdbcType=VARCHAR},
+      UserId = #{userid,jdbcType=INTEGER},
+      Type = #{type,jdbcType=SMALLINT},
+      IsSyncData = #{issyncdata,jdbcType=TINYINT},
+      IsCallBind = #{iscallbind,jdbcType=TINYINT},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
