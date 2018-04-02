@@ -13,7 +13,7 @@
         </commentGenerator>
  
         <!-- 在xml中 &符号，要转换成 &amp;  -->    
-       <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://118.190.105.190:3306/dbyunmaiuser?useUnicode=true&amp;characterEncoding=UTF-8"
+       <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://118.190.105.190:3306/dbyunmai?useUnicode=true&amp;characterEncoding=UTF-8"
                         userId="root" password="7afbafb54d">
         </jdbcConnection>
        <!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://115.28.0.250:3306/dbyunmaipt?useUnicode=true&amp;characterEncoding=UTF-8"
@@ -35,15 +35,15 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="main.resources.mapping" targetProject="src">
+        <!--<sqlMapGenerator targetPackage="main.resources.mapping" targetProject="src">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
  
         <javaClientGenerator type="XMLMAPPER" targetPackage="main.java.com.xieyupeng.springboot.mapper" targetProject="src">
             <property name="enableSubPackages" value="true"/>
-        </javaClientGenerator>
+        </javaClientGenerator>-->
 
-        <table tableName="userstoken" domainObjectName="UsersToken" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="youzan_trades" domainObjectName="YouzanTrades" enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"/>
 			

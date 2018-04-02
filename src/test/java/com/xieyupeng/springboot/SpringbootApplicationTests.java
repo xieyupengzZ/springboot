@@ -36,6 +36,7 @@ public class SpringbootApplicationTests {
 //		int p =1,q=2,z=3;
 //		System.out.println(q+=z--/++p);//z--是先使用，再减1，所以此处是3/2，但是这里都是int型，所以结果是1，而非1.5
 //		System.out.println(Math.random()); //0<= <1 double
+		System.out.println(8|9&10^11);
 	}
 
 }
