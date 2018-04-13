@@ -2,6 +2,12 @@ package com.xieyupeng.springboot.Utils;
 
 /**
  * Created by XYP on 2018/4/12.
+ * 插入排序
+ * 时间复杂度:O(n^2)
+ * 稳定的排序
+ * 希尔排序（插入排序的一种）
+ * 时间复杂度：
+ * 不稳定的排序（相同的元素，分到不同的组）
  * <a>http://www.cnblogs.com/skywang12345/p/3596881.html</a>
  */
 public class InsertionSort {
@@ -9,7 +15,7 @@ public class InsertionSort {
     //比较完了，一起移动
     static void sort(int[] array){
 
-        for(int i = 1 ; i < array.length ; i ++){
+        for(int i = 1; i < array.length ; i ++){
 
             //TODO 给array[i]寻找合适的位置
             int j = i-1;
@@ -54,10 +60,47 @@ public class InsertionSort {
         }
     }
 
+    //希尔排序
+    static void hillSort(int[] array, int gap){
+
+        for(;gap>0;gap/=2) { //间隔不断减少至1
+
+            for (int s = 0; s < gap; s++) { //每次同一间隔的循环中，起始位置都是 0 到 [gap-1] 之间，即每次都分成了gap组
+
+                for (int i = s + gap; i < array.length; i += gap) {
+
+                    //TODO 给array[i]寻找合适的位置
+                    int j = i - gap;
+                    for (; j >= s; j -= gap) { //如果找不到满足的，就说明array[i] 是最小的，循环到最后，j 的值就是 -gap
+                        if (array[j] < array[i]) {
+                            break;
+                        }
+                    }
+
+                    //TODO 找到位置后，插入，必要的话，需要移动参数
+                    if (j != i - gap) { //如果 i 和 j 相差 1，就表示两者相邻，不需要交换了
+
+                        //array[j] 是大于的那个数，所以移动是发生在它之后的，整体往后移动一位，截止到array[i]，把array[i]先临时   保存起来，因为会被覆盖。
+                        int comp = array[i];
+                        int k = i - gap;
+                        for (; k > j; k -= gap) {
+                            array[k + gap] = array[k];
+                        }
+                        array[k + gap] = comp; //循环到最后，k 会 多减一次
+
+                    }
+
+                }
+            }
+        }
+    }
+
+
     public static void main(String[] args) {
-        int[] array = new int[]{1,3,1,2};
+        int[] array = new int[]{1,3,1,2,34,10,8,3,21,10,9};
 //        sort(array);
-        insertSort(array);
+//        insertSort(array);
+        hillSort(array,array.length/2);
         for (int i : array) {
             System.out.print(i+" ");
         }

@@ -2,6 +2,8 @@ package com.xieyupeng.springboot.Utils;
 
 /**
  * Created by XYP on 2018/4/12.
+ * 快速排序
+ *
  * <a>http://www.cnblogs.com/skywang12345/p/3596746.html</a>
  */
 public class FastSort {

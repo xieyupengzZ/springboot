@@ -2,6 +2,9 @@ package com.xieyupeng.springboot.Utils;
 
 /**
  * Created by XYP on 2018/4/12.
+ * 冒泡排序
+ * 时间复杂度：O(n^2)
+ * 稳定排序
  * <a>http://www.cnblogs.com/skywang12345/p/3596232.html</a>
  */
 public class BubbleSort {
