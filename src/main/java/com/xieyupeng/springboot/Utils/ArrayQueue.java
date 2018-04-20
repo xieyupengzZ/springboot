@@ -70,4 +70,5 @@ public class ArrayQueue<T> {
     }
 
     java.util.LinkedList<String> list = new LinkedList<String>();
+
 }

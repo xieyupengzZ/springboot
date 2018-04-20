@@ -97,6 +97,7 @@ public class TwowayLinkedList<T> {
     }
 
     public static void main(String[] args) {
+
         TwowayLinkedList<String> s = new TwowayLinkedList<String>();
         s.addLast("我");
         s.addLast("是");
@@ -104,5 +105,6 @@ public class TwowayLinkedList<T> {
         s.addLast("宇");
         s.addLast("鹏");
         s.showVal(s.head.next);
+
     }
 }

@@ -62,6 +62,7 @@ public class ArrayStack<T> {
     }
 
     public static void main(String[] args) {
+
         ArrayStack<String> arrayStack = new ArrayStack(String.class);
         arrayStack.pushStack("我");
         arrayStack.pushStack("是");
@@ -72,5 +73,6 @@ public class ArrayStack<T> {
         System.out.println(arrayStack.getSize());
         System.out.println(arrayStack.popStack());
         System.out.println(arrayStack.peekStack());
+
     }
 }

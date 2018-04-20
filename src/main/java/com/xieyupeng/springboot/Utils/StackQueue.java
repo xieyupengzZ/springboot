@@ -47,7 +47,6 @@ public class StackQueue<T> {
     }
 
     public static void main(String[] args) {
-
         try {
             //执行对象的序列化
             Integer i = 4;
