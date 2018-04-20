@@ -9,6 +9,8 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication//http://blog.csdn.net/u013473691/article/details/52353923
+//@SpringBootApplication 相当与三个注解，这里只解释其中一个
+//@ComponentScan - 自动收集所有的Spring组件，包括 @Configuration 注解的类
 @EnableTransactionManagement //启动事务
 public class SpringbootApplication {
 
