@@ -15,7 +15,8 @@ public class UserBaseService {
     @Autowired
     UserBaseMapper userBaseMapper;
 
-    public UserBase get(int id){
+    public UserBase get(int id) {
+        int i = 1/0; //抛出运行时异常，没有捕捉处理，也没有向上抛，但是调用类却接受到了
         return userBaseMapper.selectByPrimaryKey(id);
     }
 

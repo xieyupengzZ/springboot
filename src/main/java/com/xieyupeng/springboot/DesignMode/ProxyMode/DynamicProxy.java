@@ -6,7 +6,7 @@ import java.lang.reflect.Proxy;
 
 /**
  * Created by XYP on 2018/4/14.
- * jdk代理，借口代理，目标对象必须实现借口
+ * jdk代理，接口代理，目标对象必须实现接口
  */
 public class DynamicProxy implements InvocationHandler{
 

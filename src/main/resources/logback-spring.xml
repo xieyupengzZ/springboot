@@ -64,10 +64,12 @@
         <appender-ref ref="MY_INFO_FILE"/>
     </logger>
 
+    <logger name="org.springframework.beans.factory.support.DefaultListableBeanFactory" level="ERROR"></logger>
+
     <!-- 开发环境下的日志配置 -->
     <springProfile name="dev">
         <root level="INFO">
-            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="CONSOLE"/>
             <appender-ref ref="MY_INFO_FILE" />
         </root>
     </springProfile>

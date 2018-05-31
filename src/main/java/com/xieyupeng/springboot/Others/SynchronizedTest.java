@@ -1,4 +1,4 @@
-package com.xieyupeng.springboot.Utils;
+package com.xieyupeng.springboot.Others;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

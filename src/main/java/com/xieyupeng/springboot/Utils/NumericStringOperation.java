@@ -98,6 +98,9 @@ public class NumericStringOperation {
         System.out.println("a = "+a + ", b = "+b);
 
         //逆向相加，逆向保存，每次都把进位保存到小的前一个数组位，然后下次循环就可以加上了
+        //字符串和数组的位置对比，a总共i个字符，数组 i+1 个
+        //a:   xieyu ... p   e   n   g
+        //list:01234 ... i-3 i-2 i-1 i i+1
         int[] list = new int[a.length()+1];
         for (int i = a.length()-1 ; i >= 0 ; i --){
             String achar = String.valueOf(a.charAt(i));
