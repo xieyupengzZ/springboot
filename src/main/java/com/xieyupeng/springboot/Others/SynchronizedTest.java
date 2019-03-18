@@ -62,7 +62,7 @@ public class SynchronizedTest {
         }
     }
 
-    //锁住了本类的某个实例对象
+    //锁住了某个实例对象
     public void test5() {
         synchronized (lockObject) {
             try {
