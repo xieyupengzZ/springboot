@@ -29,14 +29,10 @@ public class SpringbootApplicationTests {
 
 	@Test
 	public void get() {
-//		Runtime.getRuntime().totalMemory();
-		//byte,short,char<int<long<float<double,低向高自动转换
-//		int x = 4;
-//		System.out.println("values is " + ((x>4)?9:99.9));//最后一个数字类型自动向第二个转换
-//		int p =1,q=2,z=3;
-//		System.out.println(q+=z--/++p);//z--是先使用，再减1，所以此处是3/2，但是这里都是int型，所以结果是1，而非1.5
-//		System.out.println(Math.random()); //0<= <1 double
-		System.out.println(8|9&10^11);
+		Runtime.getRuntime().totalMemory();
+		int p =1,q=2,z=3;
+		System.out.println(q+=z--/++p);//z--是先使用，再减1，所以此处是3/2，但是这里都是int型，所以结果是1，而非1.5
+		System.out.println(Math.random()); //0<= <1 double
 	}
 
 }
