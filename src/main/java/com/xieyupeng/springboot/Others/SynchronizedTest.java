@@ -19,6 +19,7 @@ public class SynchronizedTest {
         try {
             logger.info(Thread.currentThread().getName() + " test1 进入");
             Thread.sleep(5000);
+            //test2(); //可重入锁机制测试（同一个类中）
             logger.info(Thread.currentThread().getName() + " test1 休眠结束");
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -80,11 +81,11 @@ public class SynchronizedTest {
         SynchronizedTest st2 = new SynchronizedTest(1);
         new Thread(() -> {
             logger.info(Thread.currentThread().getName() + " test 准备进入");
-            st.test4();
+            st.test1();
         }).start();
         new Thread(() -> {
             logger.info(Thread.currentThread().getName() + " test 准备进入");
-            st2.test4();
+            st2.test2();
         }).start();
 
     }
