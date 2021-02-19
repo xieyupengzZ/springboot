@@ -1,14 +1,16 @@
-package com.xieyupeng.springboot.studys.Utils;
+package com.xieyupeng.springboot.studys.Sorting;
 
 /**
  * Created by XYP on 2018/4/9.
- * 数字型字符串相加
+ * 数字型字符串，以数字的形式计算和
  */
-public class NumericStringOperation {
+public class NumStrOperation {
 
-    //1、创建一个数组长度记录每个位的值，大小是最长的字符串长度+1
-    //2、while循环两两对应位相加，%10 是当前位的值，/10 是进位，进位单独用一个变量替换保存，下次循环和两个数一起相加
-    //3、分别用标志位记录两个字符串是否结束，两个都结束了就退出循环
+    /**
+     * 1、创建一个数组长度记录每个位的值，大小是最长的字符串长度+1
+     * 2、while循环两两对应位相加，%10 是当前位的值，/10 是进位，进位单独用一个变量替换保存，下次循环和两个数一起相加
+     * 3、分别用标志位记录两个字符串是否结束，两个都结束了就退出循环
+     */
     public static String functionOne(String a,String b){
 
         //去掉所有字符
@@ -65,8 +67,10 @@ public class NumericStringOperation {
         return stringBuilder.toString();
     }
 
-    //两个数字型字符串相加
-    //前面补零使两个字符串长度一致
+    /**
+     * 两个数字型字符串相加
+     * 前面补零使两个字符串长度一致
+     */
     public static void functionTwo(String a,String b){
 
         //去掉所有字符

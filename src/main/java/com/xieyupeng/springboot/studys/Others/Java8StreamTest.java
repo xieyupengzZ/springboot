@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 /**
  * java8 stream
  */
-public class StreamTest {
+public class Java8StreamTest {
 
     public static class Members{
 
@@ -189,7 +189,7 @@ public class StreamTest {
     }
 
     public static void main(String[] args) {
-        StreamTest.APIStream();
+        Java8StreamTest.APIStream();
     }
 
 

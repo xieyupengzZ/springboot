@@ -1,4 +1,4 @@
-package com.xieyupeng.springboot.studys.Utils;
+package com.xieyupeng.springboot.studys.DataStructure;
 
 /**
  * Created by XYP on 2018/4/8.

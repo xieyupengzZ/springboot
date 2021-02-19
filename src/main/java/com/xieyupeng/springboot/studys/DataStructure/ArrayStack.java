@@ -1,8 +1,6 @@
-package com.xieyupeng.springboot.studys.Utils;
+package com.xieyupeng.springboot.studys.DataStructure;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by XYP on 2018/3/27.

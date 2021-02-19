@@ -1,6 +1,8 @@
-package com.xieyupeng.springboot.studys.Utils;
+package com.xieyupeng.springboot.studys.DataStructure;
 
-//最小堆，每个节点都比子节点要小即可
+/**
+ * 最小堆，每个节点都比子节点要小即可
+ */
 public class HeapMin {
 
     private int[] data;

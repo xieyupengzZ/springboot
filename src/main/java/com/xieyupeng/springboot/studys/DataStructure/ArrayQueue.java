@@ -1,6 +1,4 @@
-package com.xieyupeng.springboot.studys.Utils;
-
-import org.omg.CORBA.INTERNAL;
+package com.xieyupeng.springboot.studys.DataStructure;
 
 import java.lang.reflect.Array;
 import java.util.LinkedList;

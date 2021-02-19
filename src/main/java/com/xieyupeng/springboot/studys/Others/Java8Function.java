@@ -12,7 +12,7 @@ import java.util.function.*;
 /**
  * java8 函数式编程
  */
-public class FunctionalInterface {
+public class Java8Function {
 
     public static void main(String[] args){
 

@@ -1,4 +1,4 @@
-package com.xieyupeng.springboot.studys.Others;
+package com.xieyupeng.springboot.studys.Multithreading;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

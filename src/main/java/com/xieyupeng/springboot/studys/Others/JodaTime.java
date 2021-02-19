@@ -1,6 +1,5 @@
 package com.xieyupeng.springboot.studys.Others;
 
-import java.awt.datatransfer.SystemFlavorMap;
 import java.util.Calendar;
 
 import org.joda.time.DateMidnight;
@@ -9,7 +8,12 @@ import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 import org.joda.time.format.DateTimeFormatter;
 
-public class OperationTime {
+/**
+ * JodaTime 提供了一组 Java 类包用于处理包括 ISO8601 标准在内的 date和time。
+ * JDK1.8之前，可以利用它把 JDK Date 和 Calendar 类完全替换掉，而且仍然能够提供很好的集成。
+ * JDK1.8之后，有很好的内置库 java.time 可以不需要 JodaTime
+ */
+public class JodaTime {
 
 		public static void main(String args[]){
 			//String s = createJodaTime().toString();
@@ -51,8 +55,8 @@ public class OperationTime {
 			Calendar calendar_e = Calendar.getInstance();
 
 			//记住，月份起始是从0开始的！！！！！
-//        calendar_s.set(2018,3,1,0,0,0);
-//        calendar_e.set(2018,3,2,0,0,0);
+	//      calendar_s.set(2018,3,1,0,0,0);
+	//      calendar_e.set(2018,3,2,0,0,0);
 
 			//设置为当前月的第一天
 			calendar_e.set(Calendar.DATE,1);
