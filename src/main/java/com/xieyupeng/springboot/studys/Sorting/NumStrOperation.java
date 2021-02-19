@@ -2,7 +2,7 @@ package com.xieyupeng.springboot.studys.Sorting;
 
 /**
  * Created by XYP on 2018/4/9.
- * 数字型字符串，以数字的形式计算和
+ * 数字型字符串，以数字的形式计算总和
  */
 public class NumStrOperation {
 

@@ -2,9 +2,10 @@ package com.xieyupeng.springboot.studys.Sorting;
 
 /**
  * Created by XYP on 2018/4/12.
- * 快速排序
- * 时间复杂度：O(N*lgN) ~ O(N^2) (树的深度lgN ~ N)
- * 不稳定的排序
+ * 快速排序，O(N*log2N) ~ O(N^2) (树的深度lgN ~ N)，不稳定的排序
+ *      选择一个比较数，把比它小的和比它大的分成两组，然后每组再分别选一个比较数，用这样的方法递归
+ *
+ *  lg是以10为底，ln是以e为底
  * <a>http://www.cnblogs.com/skywang12345/p/3596746.html</a>
  */
 public class FastSort {

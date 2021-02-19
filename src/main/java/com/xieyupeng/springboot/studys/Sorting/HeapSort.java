@@ -1,19 +1,31 @@
-package com.xieyupeng.springboot.studys.DataStructure;
+package com.xieyupeng.springboot.studys.Sorting;
 
 /**
- * 最小堆，每个节点都比子节点要小即可
+ * 堆排序，O(nlog2n)，不稳定
+ *
+ * 最小堆，父节点 比 子节点 小
+ * 最大堆，父节点 比 子节点 大
+ *
+ * 判断算法是否稳定：
+ * 一个序列，有两个相等的数，排序前和排序后，两个数的相对位置不变
+ *
+ * 时间复杂度统计的是算法的[比较次数]，算法的优化还有交换次数，空间复杂度等；
+ * 简单选择排序就是交换次数优化后的冒泡排序
+ *
  */
-public class HeapMin {
+public class HeapSort {
 
-    private int[] data;
-    private int size;
-    private int maxSize;
+    private int[] data;//初始化数组
+    private int size;//新增元素的位置
+    private int maxSize;//数组大小
+    private boolean isMin; //true-最小堆 false-最大堆
 
-    public HeapMin(int maxSize){
+    public HeapSort(int maxSize,boolean isMin){
         this.maxSize = maxSize;
         size = 0;
         data = new int[maxSize];
         data[0] = 0;
+        this.isMin = isMin;
     }
 
     private int leftChildPostion(int postion){

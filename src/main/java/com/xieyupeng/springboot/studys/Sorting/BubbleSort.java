@@ -2,9 +2,9 @@ package com.xieyupeng.springboot.studys.Sorting;
 
 /**
  * Created by XYP on 2018/4/12.
- * 冒泡排序
- * 时间复杂度：O(n^2)
- * 稳定排序
+ * 冒泡排序，O(n) ~ O(n^2)，稳定排序
+ * 第一个比较到最后一个，比较一次交换一次位置，得到最小/大的数，存在数组最后一位；
+ * 第一个比较到倒数第二个，比较一次交换一次位置，得到第二小/大的数，存在数组倒数第二位；以此类推；
  * <a>http://www.cnblogs.com/skywang12345/p/3596232.html</a>
  */
 public class BubbleSort {
