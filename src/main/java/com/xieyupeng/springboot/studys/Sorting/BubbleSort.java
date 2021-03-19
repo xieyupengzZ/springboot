@@ -5,6 +5,9 @@ package com.xieyupeng.springboot.studys.Sorting;
  * 冒泡排序，O(n) ~ O(n^2)，稳定排序
  * 第一个比较到最后一个，比较一次交换一次位置，得到最小/大的数，存在数组最后一位；
  * 第一个比较到倒数第二个，比较一次交换一次位置，得到第二小/大的数，存在数组倒数第二位；以此类推；
+ *
+ * 优化：
+ * 设置一个标志，每轮比较时，如果发现没有进行交换操作，说明数组已经有序，退出循环，停止比较。
  * <a>http://www.cnblogs.com/skywang12345/p/3596232.html</a>
  */
 public class BubbleSort {
