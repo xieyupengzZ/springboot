@@ -1,95 +1,133 @@
 package com.xieyupeng.springboot.studys.Sorting;
 
+import java.util.Random;
+
 /**
- * Created by XYP on 2018/4/12.
- * 冒泡排序，O(n) ~ O(n^2)，稳定排序
- * 第一个比较到最后一个，比较一次交换一次位置，得到最小/大的数，存在数组最后一位；
- * 第一个比较到倒数第二个，比较一次交换一次位置，得到第二小/大的数，存在数组倒数第二位；以此类推；
  *
- * 优化：
- * 设置一个标志，每轮比较时，如果发现没有进行交换操作，说明数组已经有序，退出循环，停止比较。
- * <a>http://www.cnblogs.com/skywang12345/p/3596232.html</a>
+ *  Created by XYP on 2018/4/12.
+ * 冒泡排序，O(n) ~ O(n^2)，稳定排序，交换排序
+ *
+ * 思想：
+ * 每次都从0开始，相邻比较，大的往后放，只要逆序就交换，直到最大的数保存在最后一位
+ * 重复以上操作，把剩下的数里面最大的数保存到倒数第二位...
+ *
+ * 优化1：设置一个标志，每轮比较时，如果发现没有进行交换操作，说明数组已经有序，退出循环，停止比较
+ * 优化2：在比较过程中记录下没有发生交换的区间，下次循环可直接跳过，减少不必要的比较
+ *
  */
-public class BubbleSort {
+public class BubbleSort extends AbstractSort{
 
-    private int[] array = null;
-    private int comparisonTimes= 0;
-
-    BubbleSort(int[] array){
-        this.array = array;
+    public BubbleSort(int[] array){
+        super(array);
     }
-
 
     public void sort(){
 
-        if(array!=null&&array.length>0){
-            long time1 = System.currentTimeMillis();
-            for (int i = array.length ; i > 0 ; i --){ //用来控制比较的最后的位置
+        System.out.println();
+        sort1();
+        show("冒泡排序1 ");
+        System.out.println();
+        sort2();
+        show("冒泡排序2 ");
+    }
 
-                for (int j = 0 ; j < i-1 ; j ++ ){
+    /**
+     * 用一个交换标识来判断如果数组已经有序就退出循环
+     */
+    public void sort1(){
 
-                        if(array[j]>array[j+1]){
-
-                            comparisonTimes++;
-                            int com = array[j+1];
-                            array[j+1] = array[j];
-                            array[j] = com;
-
-                        }
+        init();
+        long time1 = System.currentTimeMillis();
+        /*
+        //for循环的方法
+        int i = 0 ,j = 0;
+        for (i = array.length ; i > 0 ; i --){
+            comparisonTimes ++;
+            for (j = 0 ; j < i-1 ; j ++ ){
+                cycleTimes ++;
+                comparisonTimes ++;
+                if(array[j]>array[j+1]){
+                    changeTimes++;
+                    int com = array[j+1];
+                    array[j+1] = array[j];
+                    array[j] = com;
+                    isExchanged = true;
                 }
             }
-            System.out.println("耗时："+(System.currentTimeMillis()-time1));
-        }else {
-            System.out.println("array is null");
-        }
-    }
-
-    //优化后
-    public void sortOptimize(){
-        comparisonTimes = 0;
-        boolean isExchanged = false;
-        if(array!=null&&array.length>0){
-
-            long time1 = System.currentTimeMillis();
-            for (int i = array.length ; i > 0 ; i --){
-
-                for (int j = 0 ; j < i-1 ; j ++ ){
-
-                    if(array[j]>array[j+1]){
-
-                        comparisonTimes ++;
-                        int com = array[j+1];
-                        array[j+1] = array[j];
-                        array[j] = com;
-
-                        isExchanged = true;
-                    }
-
-                }
-                if(!isExchanged){ //如果第一次循环没有交换过，就说明是有序的，后面就不用比较了
-                    System.out.println("第一遍循环就发现是有序的，不用比较啦，浪费我时间");
-                    break;
-                }
+            if(!isExchanged){ //本次循环中没有发生交换，说明已经有序的，可以退出循环了
+                System.out.println("已经有序无需再比，i = " + i + " j = " + j);
+                break;
             }
-            System.out.println("耗时："+(System.currentTimeMillis()-time1));
-        }else {
-            System.out.println("array is null");
+        }*/
+
+
+        //while循环的方法
+        int index = 0;
+        int len = sortArray.length;
+        while (len-->0){
+            index = 0;
+            compareTimes++;
+            while (index < len){
+                cycleTimes ++;
+                compareTimes++;
+                if(sortArray[index] > sortArray[index+1]){
+                    changeTimes++;
+                    int val = sortArray[index+1];
+                    sortArray[index+1] = sortArray[index];
+                    sortArray[index] = val;
+                    isExchanged = true;
+                }
+                index ++;
+            }
+            if(!isExchanged){
+//                System.out.println("已经有序无需再比，结束位置 = " + len);
+                break;
+            }else{
+                isExchanged = false;
+            }
         }
+
     }
 
-    public void show(){
-        System.out.println("交换了 "+comparisonTimes+" 次");
-        for (int i : array) {
-            System.out.print(i + " ");
-        }
-    }
+    /**
+     * 在比较过程中记录下没有发生交换的区间，下次循环可直接跳过
+     */
+    public void sort2(){
 
-    public static void main(String[] args) {
-        int[] array = new int[]{8,7,6,5,4,3,2,1,0};
-        BubbleSort bubbleSort = new BubbleSort(array);
-//        bubbleSort.sort();
-        bubbleSort.sortOptimize();
-        bubbleSort.show();
+        init();
+        long time1 = System.currentTimeMillis();
+
+
+        int index = 0;
+        int end = sortArray.length;
+        int right = 0;
+        while (end-- > 0){
+            index = 0;
+            compareTimes++;
+            while (index < end){
+                cycleTimes ++;
+                compareTimes++;
+                if(sortArray[index] > sortArray[index+1]){
+                    changeTimes++;
+                    int val = sortArray[index+1];
+                    sortArray[index+1] = sortArray[index];
+                    sortArray[index] = val;
+                    right = index + 1;
+                    isExchanged = true;
+                }
+                index++;
+            }
+            //把本次循环中最后一个交换的位置当做下次循环的终点
+            if(isExchanged){
+                end = right;
+                isExchanged = false;
+
+                //如果没有交换说明已经有序，直接退出
+            }else {
+                break;
+            }
+        }
+
     }
 
 }
