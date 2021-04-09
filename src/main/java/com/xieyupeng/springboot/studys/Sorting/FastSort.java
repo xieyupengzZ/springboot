@@ -10,20 +10,30 @@ package com.xieyupeng.springboot.studys.Sorting;
  *
  *
  */
-public class FastSort {
+public class FastSort extends AbstractSort{
 
-    int[] array = null; //不写修饰符，也就是默认（default），只有 同一个类 和 同包 能访问）
-    static int comparisonTimes= 0;
+    int[] arrayCopy = null;
 
-    FastSort(int[] array){
-        this.array = array;
+    public FastSort(int[] array){
+        super(array);
+        arrayCopy = new int[array.length];
+    }
+
+    @Override
+    public void sort() {
+        init();
+        sort1(sortArray,0,sortArray.length-1);
+        show("快速排序1 ");
+
+        init();
+        sort2(arrayCopy,0,sortArray.length-1);
+        show("快速排序2 ");
     }
 
     //以数组第一个数为基数
-    public static void sort(int[] array, int start,int end){
-        System.out.println("循环开始：start = "+start+" end = "+end);
+    public void sort1(int[] array, int start,int end){
 
-        if(end > start){
+        if (start < end){
 
             int sindex = start;
             int eindex = end;
@@ -31,39 +41,79 @@ public class FastSort {
             while (sindex < eindex){
 
                 //从右往左比较
-                while ( eindex > sindex && array[eindex] >= comparisonVal){
+                while ( sindex < eindex && comparisonVal <= array[eindex]){
                     eindex--;
                 }
-                if(eindex > sindex){
+                if(sindex < eindex){
                     array[sindex] = array[eindex];
                     System.out.println(eindex+" 和 "+sindex + "交换");
                 }
 
                 //从左往右比较
-                while ( eindex > sindex && array[sindex] <= comparisonVal){
+                while ( sindex < eindex  && array[sindex] <= comparisonVal){
                     sindex++;
                 }
-                if(eindex > sindex){
+                if(sindex < eindex){
                     array[eindex] = array[sindex];
                     System.out.println(sindex+" 和 "+eindex + "交换");
                     eindex--;
                 }
             }
-            System.out.println("循环结束：start = "+sindex + " end = "+eindex);
 
             array[sindex] = comparisonVal;
-            //注意必须以上一次的开始结束作为标准
-            sort(array,start,sindex-1);
-            sort(array,sindex+1,end);
+            //剔除掉比较数，无需再比
+            sort1(array,start,sindex-1);
+            sort1(array,sindex+1,end);
         }
 
     }
 
-    public static void main(String[] args) {
-        int[] array = new int[]{3,2,5,12,7,9,3,1,4,0,0,2};
-        sort(array,0,array.length-1);
-        for (int i : array) {
-            System.out.print(i+" ");
+
+    public void sort2(int[] array,int start,int end){
+
+        if(start < end){
+
+            int startCopy = start;
+            int endCopy = end;
+            int startIndex = start;
+            int endIndex = end;
+            boolean left = false;
+            boolean right = false;
+            int compareValue =  sortArray[start];
+            while (startCopy < endCopy ){
+                if(sortArray[++startCopy] <= compareValue){
+                    array[startIndex++] = sortArray[startCopy];
+                    left = true;
+                }else{
+                    array[endIndex--] = sortArray[startCopy];
+                    right = true;
+                }
+            }
+
+            //因为会多加一次，所以要减去
+            endIndex = right ? endIndex+1 : endIndex ;
+            if(left){
+                startIndex--;
+                array[startIndex+1] = compareValue;
+            }else{
+                array[startIndex] = compareValue;
+            }
+
+            //复制给原数组
+            for(int index = start ; index <= end ; index ++ ){
+                sortArray[index] = array[index];
+            }
+
+            for (int i : sortArray) {
+                System.out.print(i);
+                System.out.print(" ");
+            }
+            System.out.println();
+            System.out.println();
+
+            sort2(array,start,startIndex);
+            sort2(array,endIndex,end);
         }
     }
+
 }
