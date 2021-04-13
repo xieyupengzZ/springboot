@@ -50,11 +50,11 @@ public class SortingTest {
 
     public static void main(String[] args) {
 
-        initArray(20,30);
-//        initArray(new int[]{2,4,5,0,1,2,8,9});
+        initArray(20000,30000);
+//        initArray(new int[]{2,2,2,2,2,2,2,2,2,2});
 
         List<AbstractSort> list = new ArrayList<AbstractSort>();
-//        list.add(new BubbleSort(sortArray));
+        list.add(new BubbleSort(sortArray));
         list.add(new FastSort(sortArray));
         sort(list);
     }

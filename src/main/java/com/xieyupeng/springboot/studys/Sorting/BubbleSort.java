@@ -26,6 +26,7 @@ public class BubbleSort extends AbstractSort{
         System.out.println();
         sort1();
         show("冒泡排序1 ");
+
         System.out.println();
         sort2();
         show("冒泡排序2 ");
