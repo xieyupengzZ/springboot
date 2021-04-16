@@ -39,28 +39,6 @@ public class BubbleSort extends AbstractSort{
 
         init();
         long time1 = System.currentTimeMillis();
-        /*
-        //for循环的方法
-        int i = 0 ,j = 0;
-        for (i = array.length ; i > 0 ; i --){
-            comparisonTimes ++;
-            for (j = 0 ; j < i-1 ; j ++ ){
-                cycleTimes ++;
-                comparisonTimes ++;
-                if(array[j]>array[j+1]){
-                    changeTimes++;
-                    int com = array[j+1];
-                    array[j+1] = array[j];
-                    array[j] = com;
-                    isExchanged = true;
-                }
-            }
-            if(!isExchanged){ //本次循环中没有发生交换，说明已经有序的，可以退出循环了
-                System.out.println("已经有序无需再比，i = " + i + " j = " + j);
-                break;
-            }
-        }*/
-
 
         //while循环的方法
         int index = 0;

@@ -33,7 +33,7 @@ public class FastSort extends AbstractSort{
     }
 
     /**
-     * 不是使用额外数组
+     * 不是使用额外数组，有问题 TODO
      */
     public void sort1(int[] array, int start,int end){
 
@@ -43,11 +43,10 @@ public class FastSort extends AbstractSort{
             int sindex = start;
             int eindex = end;
             int comparisonVal = array[sindex];
-            boolean iscompare = false;
             while (sindex < eindex){
                 compareTimes++;
                 cycleTimes++;
-                //从尾部开始比较，找到大的，放到头部去
+                //从尾部开始比较，找到小的，放到头部去
                 while ( sindex < eindex && comparisonVal <= array[eindex]){
                     compareTimes+=2;
                     cycleTimes++;
@@ -55,11 +54,10 @@ public class FastSort extends AbstractSort{
                 }
                 compareTimes++;
                 if(sindex < eindex){
-                    array[sindex] = array[eindex];
-                    iscompare = true;
+                    array[sindex++] = array[eindex];
                 }
 
-                //从头部开始比较，找到小的，放到尾部去
+                //从头部开始比较，找到大的，放到尾部去
                 while ( sindex < eindex  && array[sindex] <= comparisonVal){
                     compareTimes+=2;
                     cycleTimes++;
@@ -67,19 +65,12 @@ public class FastSort extends AbstractSort{
                 }
                 compareTimes++;
                 if(sindex < eindex){
-                    array[eindex] = array[sindex];
-                    iscompare = true;
-                    eindex--;
+                    array[eindex--] = array[sindex];
                 }
-            }
+             }
 
             //把比较数放到最后一个移动了的位置上，这样一次循环中，所有需要移动的位置都归位，无需额外数组
             array[sindex] = comparisonVal;
-
-            //已经有序直接退出
-            if(!iscompare){
-                return;
-            }
 
             //剔除掉比较数array[sindex]，无需再比，否则可能发生死循环
             sort1(array,start,sindex-1);
@@ -149,4 +140,26 @@ public class FastSort extends AbstractSort{
         }
     }
 
+    public void srot3(int[] array,int start,int end) {
+        int pivot = array[start];
+        int i = start;
+        int j = end;
+        while (i<j) {
+            while ((i<j)&&(array[j]>pivot)) {
+                j--;
+            }
+            while ((i<j)&&(array[i]<pivot)) {
+                i++;
+            }
+            if ((array[i]==array[j])&&(i<j)) {
+                i++;
+            } else {
+                int temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        if (i-1>start) srot3(array,start,i-1);
+        if (j+1<end) srot3(array,j+1,end);
+    }
 }
