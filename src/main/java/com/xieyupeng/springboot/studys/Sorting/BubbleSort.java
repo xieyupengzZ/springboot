@@ -3,7 +3,6 @@ package com.xieyupeng.springboot.studys.Sorting;
 import java.util.Random;
 
 /**
- *
  *  Created by XYP on 2018/4/12.
  * 冒泡排序，O(n) ~ O(n^2)，稳定排序，交换排序
  *
@@ -23,13 +22,13 @@ public class BubbleSort extends AbstractSort{
 
     public void sort(){
 
-        System.out.println();
         sort1();
         show("冒泡排序1 ");
-
         System.out.println();
+
         sort2();
         show("冒泡排序2 ");
+        System.out.println();
     }
 
     /**
