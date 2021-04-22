@@ -43,8 +43,9 @@ public class FastSort extends AbstractSort{
      */
     public void sort1(int[] array, int start,int end){
 
-        compareTimes++;
+
         if (start < end){
+            compareTimes++;
 
             int sindex = start;
             int eindex = end;
@@ -91,8 +92,8 @@ public class FastSort extends AbstractSort{
      */
     public void sort2(int[] array,int start,int end){
 
-        compareTimes++;
         if(start < end){
+            compareTimes++;
 
             int startCopy = start;
             int endCopy = end;
@@ -165,20 +166,27 @@ public class FastSort extends AbstractSort{
         int s = start;
         int e = end;
         while ( s < e ) {
+            cycleTimes++;
+            compareTimes++;
 
             //从后面开始找，找到 >=pivot 的
             while ( s < e && pivot < array[e] ) {
+                cycleTimes++;
+                compareTimes+=2;
                 e--;
             }
 
             //从前面开始找，找到 <=pivot 的
             while ( s < e && array[s] < pivot ) {
+                cycleTimes++;
+                compareTimes+=2;
                 s++;
             }
 
             //两数相等时(都等于比较数，因为两者中必有一个是比较数)
             //左边的索引+1，继续找大的，右边的不动，是为了把右边的移到左边，因为排序方式是左边小右边大
             if ( array[s]==array[e] && s < e ) {
+                compareTimes+=2;
                 s++;
 
             } else { //交换二者的位置，小的到前，大的到后

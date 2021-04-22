@@ -1,5 +1,14 @@
 package com.xieyupeng.springboot.studys.Sorting;
 
+import com.xieyupeng.springboot.controller.UserTokenController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+
 /**
  * Created by XYP on 2018/4/12.
  *
@@ -32,61 +41,142 @@ public class InsertionSort extends AbstractSort{
         show("插入排序1 ");
         System.out.println();
 
+        init();
+        sort2(sortArray);
+        show("插入排序2 ");
+        System.out.println();
+
+
     }
 
     /**
      * 直接插入排序
-     * 第一个数默认是有序数组，从第二个数开始循环
+     * 值的比例 约等于 索引(位置)的比例，能快速定位到最近位置，然后再依次比较
+     * 比较次数比sort2少，但是耗时比sort2长，待分析 TODO
      */
-    static void sort1(int[] array){
+    public void sort1(int[] array){
 
         int len = array.length;
         int index = 1;
         while (index < len){
-
+            compareTimes++;
+            cycleTimes++;
             //已排好序的数组长度
+            int compare = array[index];
             int sortLen = index;
 
-            //查找插入的位置，数值大小比例 和 索引比例 差不多
+            //有序数组中查找插入的位置，数值大小比例 和 索引比例 差不多
             //array[sortIndex] - array[0] / array[sortLen-1] - array[0] == sortIndex - 0 / sortLen - 0
-            int sortIndex = sortLen * (array[index] - array[0] / array[sortLen-1] - array[0]);
-            if(array[sortIndex] <= array[index]){
-                while (sortIndex < sortLen && array[sortIndex] <= array[index]){
-                    sortIndex ++;
-                }
-                //移位 TODO
-                array[sortIndex] = array[index];
-
-            }else {
-                while (sortIndex > 0 && array[sortIndex] <= array[index]){
-                    sortIndex --;
-                }
-                //移位 TODO
-                array[sortIndex] = array[index];
-
+            //注意越界，如：2200多个数排序，每个数取值范围10万以内，那么计算结果就可能超过21亿，大于int的最大值，改用long
+            long sortIndex = 0;
+            if(array[sortLen-1] - array[0] != 0){
+                sortIndex =  sortLen * (array[index] - array[0]) / (array[sortLen-1] - array[0]);
             }
 
-            index ++;
+            //插入位置大于等于有序数组长度，就直接退出，并指向下一个比较数
+            compareTimes++;
+            if(sortIndex >= sortLen){
+                index ++;
+                continue;
+            }
 
+            //插入的位置小于0，就交换到第一位
+            compareTimes++;
+            if(sortIndex < 0){
+                while (sortLen > 0){
+                    compareTimes++;
+                    cycleTimes++;
+                    changeTimes++;
+                    array[sortLen] = array[sortLen-1];
+                    sortLen--;
+                }
+                changeTimes++;
+                array[0] = compare;
+                index++;
+                continue;
+            }
+
+
+            //大于等于往后找
+            compareTimes++;
+            if(array[(int) sortIndex] <= compare){
+                while (sortIndex < sortLen && array[(int) sortIndex] <= compare){
+                    compareTimes+=2;
+                    cycleTimes++;
+                    sortIndex ++;
+                }
+                //如果插入位置不是在最后，就把前面的先移位，从sortIndex到sortLen-1，每一个都往后移一位
+                compareTimes++;
+                if(sortIndex < sortLen){
+                    while (sortLen > sortIndex){
+                        compareTimes++;
+                        cycleTimes++;
+                        changeTimes++;
+                        array[sortLen] = array[sortLen-1];
+                        sortLen--;
+                    }
+                }
+                //赋值
+                changeTimes++;
+                array[(int) sortIndex] = compare;
+
+            }else {//小于往前找
+                while (sortIndex > 0 && array[(int) sortIndex] > compare){
+                    compareTimes+=2;
+                    cycleTimes++;
+                    sortIndex --;
+                }
+                //防止极端情况，如：比较数比第二个数小但是比第一个数大，循环结束得到的插入位置是0，其实应该是1
+                if(array[(int) sortIndex] <= compare){
+                    sortIndex++;
+                }
+                //先移位，从sortIndex到sortLen-1，每一个都往后移一位
+                while (sortLen > sortIndex){
+                    compareTimes++;
+                    cycleTimes++;
+                    changeTimes++;
+                    array[sortLen] = array[sortLen-1];
+                    sortLen--;
+                }
+                //赋值
+                changeTimes++;
+                array[(int) sortIndex] = compare;
+            }
+
+            //下一个比较数
+            index ++;
         }
     }
 
-    //边比较，边移动
-    public static void sort2(int[] array) {
-        int length = array.length;
-        // 此循环从1开始，就是将0下标的元素当做一个参照
-        for (int i = 1; i < length; i++) {
-            if (array[i] < array[i - 1]) {
-                int vacancy = i; // 用于记录比较过程中那个空缺出来的位置
-                int sentry = array[i]; // 比较值
-                // 这个循环很关键，从当前下标之前一个元素开始倒序遍历，比较结果如果比当前大的，就后移
-                //因为前面都是有序的，所以移动的时候，一定是循环一次移动一个
-                for (int j = i - 1; j >= 0 && array[j] > sentry; j--) {
-                    vacancy = j;
-                    array[j + 1] = array[j]; // 后移比当前元素大的元素
-                }
-                array[vacancy] = sentry; // 将比较值，也就是当前下标对应的值置入空缺出来的位置
+    /**
+     * 直接插入排序
+     * 逐个比较，比较一次交换一次位置
+     * @param array
+     */
+    public void sort2(int[] array){
+        int index = 1;
+        int len = array.length;
+        while (index < len){
+            compareTimes+=2;
+            cycleTimes++;
+            if(array[index] >= array[index-1]){
+                index++;
+                continue;
             }
+
+            int copyIndex = index;//插入的位置
+            int compare = array[index];//比较值
+
+            while (copyIndex > 0 && array[copyIndex - 1] > compare){
+                changeTimes++;
+                compareTimes+=2;
+                cycleTimes++;
+                array[copyIndex] = array[copyIndex - 1];
+                copyIndex -- ;
+            }
+            changeTimes++;
+            array[copyIndex] = compare;
+            index ++;
         }
     }
 

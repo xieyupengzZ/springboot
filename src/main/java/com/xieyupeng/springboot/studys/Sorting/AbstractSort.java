@@ -1,5 +1,8 @@
 package com.xieyupeng.springboot.studys.Sorting;
 
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+
 public abstract class AbstractSort {
 
     protected int[] baseArray = null;       //源数组
@@ -14,6 +17,9 @@ public abstract class AbstractSort {
         this.baseArray = array;
     }
 
+    /**
+     * 属性初始化
+     */
     protected void init(){
         sortArray = baseArray.clone();
         compareTimes = 0;
@@ -23,6 +29,9 @@ public abstract class AbstractSort {
         isExchanged = false;
     }
 
+    /**
+     * 排序结果输出
+     */
     protected void show(String desc){
         System.out.print(desc + "结果：");
         for (int i : sortArray) {
@@ -36,5 +45,8 @@ public abstract class AbstractSort {
         System.out.println(desc + "交换次数："+changeTimes);
     }
 
+    /**
+     * 排序方法
+     */
     public abstract void sort();
 }
