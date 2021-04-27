@@ -68,7 +68,7 @@ public class SortingTest {
     public static void main(String[] args) {
 
 //        outFile("D:\\MyProjects\\log.txt");
-        initArray(4000,100000);
+        initArray(2000,1000);
 //        initArray(new int[]{0,14,18,19,3,0,5,8,10,12});
 
         List<AbstractSort> list = new ArrayList<AbstractSort>();

@@ -42,7 +42,7 @@ public abstract class AbstractSort {
         System.out.println(desc + "耗时："+(System.currentTimeMillis() - startTime));
         System.out.println(desc + "比较次数："+compareTimes);
         System.out.println(desc + "循环次数："+cycleTimes);
-        System.out.println(desc + "交换次数："+changeTimes);
+//        System.out.println(desc + "交换次数："+changeTimes);
     }
 
     /**

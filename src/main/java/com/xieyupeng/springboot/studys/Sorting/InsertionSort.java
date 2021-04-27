@@ -36,14 +36,19 @@ public class InsertionSort extends AbstractSort{
     @Override
     public void sort() {
 
-        init();
-        sort1(sortArray);
-        show("插入排序1 ");
-        System.out.println();
+//        init();
+//        sort1(sortArray);
+//        show("插入排序1 ");
+//        System.out.println();
 
         init();
         sort2(sortArray);
         show("插入排序2 ");
+        System.out.println();
+
+        init();
+        sort3(sortArray);
+        show("插入排序3 ");
         System.out.println();
 
 
@@ -52,7 +57,8 @@ public class InsertionSort extends AbstractSort{
     /**
      * 直接插入排序
      * 值的比例 约等于 索引(位置)的比例，能快速定位到最近位置，然后再依次比较
-     * 比较次数比sort2少，但是耗时比sort2长，待分析 TODO
+     * 比较次数比sort2少，但是耗时比sort2长，因为计算花时间了
+     * 此处只是简单比较大小，如果某个业务中，比较是一个复杂操作，减少比较次数的收益就比较高了
      */
     public void sort1(int[] array){
 
@@ -150,37 +156,74 @@ public class InsertionSort extends AbstractSort{
 
     /**
      * 直接插入排序
-     * 逐个比较，比较一次交换一次位置
+     * 逐个比较，边比较边移位，减少循环次数；
+     * 如果是先找出位置，最后再一起移位，还需再循环一遍。
      * @param array
      */
     public void sort2(int[] array){
         int index = 1;
-        int len = array.length;
-        while (index < len){
+        while (index < array.length){
             compareTimes+=2;
             cycleTimes++;
             if(array[index] >= array[index-1]){
                 index++;
                 continue;
             }
-
-            int copyIndex = index;//插入的位置
+            int insertIndex = index;//插入的位置
             int compare = array[index];//比较值
 
-            while (copyIndex > 0 && array[copyIndex - 1] > compare){
-                changeTimes++;
+            while (insertIndex > 0 && array[insertIndex - 1] > compare){
                 compareTimes+=2;
                 cycleTimes++;
-                array[copyIndex] = array[copyIndex - 1];
-                copyIndex -- ;
+                array[insertIndex] = array[insertIndex - 1];
+                insertIndex -- ;
             }
-            changeTimes++;
-            array[copyIndex] = compare;
+            array[insertIndex] = compare;
             index ++;
         }
     }
 
 
+    /**
+     * 希尔排序
+     * 单组中比较时，边比较边移位。
+     */
+    public void sort3(int[] array){
+        int gap = array.length / 2;
+        while (gap > 0){ //控制间隔的变化，初始化为数组长度的一半，2倍递减
+            compareTimes++;
+            cycleTimes++;
+            int gapindex = 0;
+            while (gapindex < gap){ //控制起始位置的变化，从0到gap-1，一共gap-1组，[0,gap,gap*2...]，[1,gap+1,gap*2+1...]，[2,gap+2,gap*2+2...]...[gap-1,gap*2-1,gap*3-1...]
+                compareTimes++;
+                cycleTimes++;
+                /** 从此处开始，本质就是一个直接插入排序（直接插入排序的gap=1），可对比sort2方法**/
+                int insert = gapindex + gap;//insert就是每次准备要插入的数的位置
+                while (insert < array.length ){
+                    compareTimes+=2;
+                    cycleTimes++;
+                    if(array[insert] >= array[insert-gap]){
+                        insert += gap;
+                        continue;
+                    }
+                    int insertIndex = insert;
+                    int temp = array[insert];
+
+                    while ( insertIndex - gap >= 0 &&  array[insertIndex - gap] > temp ){
+                        compareTimes+=2;
+                        cycleTimes++;
+                        array[insertIndex] = array[insertIndex - gap];
+                        insertIndex -= gap;
+                    }
+                    array[insertIndex] = temp;
+                    insert += gap;
+                }
+                /**----------------------------------------------------------**/
+                gapindex ++;
+            }
+            gap /= 2;
+        }
+    }
 
     //希尔排序
     static void hillSort(int[] array, int gap){
